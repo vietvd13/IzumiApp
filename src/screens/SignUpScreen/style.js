@@ -79,13 +79,12 @@ export const stylesCSS = {
     borderBottomWidth: 1,
     borderRightWidth: 1,
   },
-
   zoneHelper: {
     flex: 1,
     justifyContent: 'flex-end',
     marginBottom: 20
   }
-};
+}
 
 export const borderUserId = {
   borderColor: {

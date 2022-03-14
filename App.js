@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { StatusBar } from 'expo-status-bar';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -48,6 +49,7 @@ function MyStack() {
 export default function App() {
   return (
     <NavigationContainer>
+      <StatusBar style="auto" />
       <MyStack />
     </NavigationContainer>
   );
