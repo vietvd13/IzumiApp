@@ -13,6 +13,8 @@ const SignUpScreen = ({ navigation }) => {
 
   const onSignUp = () => {
     console.log('onSignUp');
+
+    navigation.push('MessageSignUpScreen');
   }
 
   const togglePassword = () => {

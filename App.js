@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 
@@ -6,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
+import MessageSignUpScreen from './src/screens/MessageSignUpScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
 import Dashboard from './src/screens/Dashboard';
 
@@ -29,6 +31,12 @@ function MyStack() {
         options={Options['SignUpScreen']} 
         name={StackName['SignUpScreen']} 
         component={SignUpScreen} 
+      />
+
+      <Stack.Screen 
+        options={Options['MessageSignUpScreen']} 
+        name={StackName['MessageSignUpScreen']} 
+        component={MessageSignUpScreen} 
       />
 
       <Stack.Screen 
