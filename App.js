@@ -1,18 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import SignInScreen from './src/screens/SignInScreen';
+import * as React from 'react';
 
-export default function App() {
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+import SignInScreen from './src/screens/SignInScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
+import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
+import Dashboard from './src/screens/Dashboard';
+
+const Stack = createStackNavigator();
+
+const hidden = {
+  headerShown: false
+}
+
+function MyStack() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <SignInScreen />
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen options={hidden} name="SignInScreen" component={SignInScreen} />
+      <Stack.Screen options={hidden} name="SignUpScreen" component={SignUpScreen} />
+      <Stack.Screen options={hidden} name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
+      <Stack.Screen options={hidden} name="Dashboard" component={Dashboard} />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  );
+}
