@@ -3,10 +3,10 @@ import React from 'react';
 import Layout from '../../layout';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-      <Layout />
+      <Layout navigation={navigation} />
     </SafeAreaView>
   )
 };

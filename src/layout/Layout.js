@@ -7,7 +7,6 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import { 
-  NavigationContainer,
   DrawerActions
 } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
@@ -20,8 +19,7 @@ const Navbar = () => {
   }
 
   const onLogout = () => {
-    console.log(navigation);
-    navigation.navigate('SignInScreen');
+    navigation.push('SignInScreen');
   }
 
   return (
@@ -214,9 +212,7 @@ const Sidebar = () => {
 
 const Layout = () => {
   return (
-    <NavigationContainer independent={true}>
-      <Sidebar />
-    </NavigationContainer>
+    <Sidebar />
   )
 }
 
