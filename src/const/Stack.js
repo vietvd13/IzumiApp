@@ -2,6 +2,7 @@ export const StackName = {
   SignInScreen: 'SignInScreen',
   SignUpScreen: 'SignUpScreen',
   MessageSignUpScreen: 'MessageSignUpScreen',
+  ChangePasswordScreen: 'ChangePasswordScreen',
   ForgotPasswordScreen: 'ForgotPasswordScreen',
   Dashboard: 'Dashboard' 
 }
@@ -18,6 +19,10 @@ export const Options = {
   MessageSignUpScreen: {
     headerShown: false,
     title: 'Message Sign Up Screen',
+  },
+  ChangePasswordScreen: {
+    headerShown: false,
+    title: 'Change Password Screen',
   },
   ForgotPasswordScreen: {
     headerShown: false,

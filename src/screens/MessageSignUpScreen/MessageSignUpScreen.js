@@ -4,9 +4,11 @@ import React from 'react';
 
 import { stylesCSS } from './style';
 
-const MessageSignUpScreen = () => {
+const MessageSignUpScreen = ({ navigation }) => {
   const onConfirm = () => {
     console.log('onConfirm');
+
+    navigation.push('ChangePasswordScreen');
   }
 
   return (

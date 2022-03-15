@@ -8,6 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import MessageSignUpScreen from './src/screens/MessageSignUpScreen';
+import ChangePasswordScreen from './src/screens/ChangePasswordScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
 import Dashboard from './src/screens/Dashboard';
 
@@ -37,6 +38,12 @@ function MyStack() {
         options={Options['MessageSignUpScreen']} 
         name={StackName['MessageSignUpScreen']} 
         component={MessageSignUpScreen} 
+      />
+
+      <Stack.Screen 
+        options={Options['ChangePasswordScreen']} 
+        name={StackName['ChangePasswordScreen']} 
+        component={ChangePasswordScreen} 
       />
 
       <Stack.Screen 
