@@ -9,6 +9,7 @@ import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import MessageSignUpScreen from './src/screens/MessageSignUpScreen';
 import ChangePasswordScreen from './src/screens/ChangePasswordScreen';
+import MessageConfirmPasswordScreen from './src/screens/MessageConfirmPasswordScreen/MessageConfirmPasswordScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
 import Dashboard from './src/screens/Dashboard';
 
@@ -44,6 +45,12 @@ function MyStack() {
         options={Options['ChangePasswordScreen']} 
         name={StackName['ChangePasswordScreen']} 
         component={ChangePasswordScreen} 
+      />
+
+      <Stack.Screen 
+        options={Options['MessageConfirmPasswordScreen']} 
+        name={StackName['MessageConfirmPasswordScreen']} 
+        component={MessageConfirmPasswordScreen} 
       />
 
       <Stack.Screen 

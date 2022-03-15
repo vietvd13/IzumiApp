@@ -25,7 +25,7 @@ const borderPassword = {
   }
 }
 
-const ChangePasswordScreen = () => {
+const ChangePasswordScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
@@ -41,6 +41,8 @@ const ChangePasswordScreen = () => {
 
   const onChangePassword = () => {
     console.log('onChangePassword');
+
+    navigation.push('MessageConfirmPasswordScreen');
   }
 
   return (
