@@ -40,27 +40,24 @@ const Navbar = () => {
 
 const NoteScreen = () => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Navbar />
-      <Text>お知らせ</Text>
+      <View style={{ flex: 1, padding: 10 }}>
+        <Text>お知らせ</Text>
+      </View>
     </View>
   )
 }
 
 const ListSidebar = (props) => {
-  const onClose = () => {
-    props.navigation.dispatch(DrawerActions.toggleDrawer());
-  }
-
   return (
     <DrawerContentScrollView {...props}>
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <View style={{ 
           flex: 1,
           height: 50,
+          alignItems: 'center',
           justifyContent: 'center',
-          alignContent: 'center',
-          textAlign: 'center'
         }}>
           <Text style={{
             fontSize: 25,
@@ -69,18 +66,6 @@ const ListSidebar = (props) => {
             textTransform: 'uppercase',
           }}>Izumi</Text>
         </View>
-        <Pressable 
-          style={{
-            width: 50,
-            height: 50,
-            justifyContent: 'center',
-            alignContent: 'center',
-            textAlign: 'center' 
-          }} 
-          onPress={onClose}
-        >
-          <Icon style={{lineHeight: 39}} name="close" size={20} color="#1534A1" />
-        </Pressable>
       </View>
 
       <DrawerItemList {...props} />
@@ -112,23 +97,20 @@ const Layout = () => {
 
 const NavbarStyle = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
   },
 
   zoneIcon: {
     width: 50,
     height: 50,
+    alignItems: 'center',
     justifyContent: 'center',
-    alignContent: 'center',
-    textAlign: 'center'
   },
   zoneText: {
     flex: 1,
     height: 50,
+    alignItems: 'center',
     justifyContent: 'center',
-    alignContent: 'center',
-    textAlign: 'center'
   },
   displayLogo: {
     fontSize: 25,
