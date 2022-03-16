@@ -384,7 +384,7 @@ const styleHome = StyleSheet.create({
   slide: {
     flex: 1,
     backgroundColor: 'transparent',
-    marginHorizontal: 30,
+    marginHorizontal: 10,
   },
 });
 
