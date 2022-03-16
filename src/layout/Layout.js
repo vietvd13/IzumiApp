@@ -10,6 +10,8 @@ import {
   DrawerActions
 } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import Swiper from 'react-native-swiper/src';
+
 
 const Navbar = () => {
   const navigation = useNavigation();
@@ -136,6 +138,255 @@ const Setting = () => {
   )
 }
 
+const SideView = (props) => {
+  return (
+    <View style={SideViewStyle.container}>
+      {
+        props.data.map((row, indexRow) => {
+          return (
+            <View style={SideViewStyle.row} key={`row-${indexRow}`}>
+              {
+                row.map((item, indexItem) => {
+                  return (
+                    <View style={SideViewStyle.item} key={`item-${indexRow}-${indexItem}`}>
+                      <View style={SideViewStyle.icon}>
+                        <Icon style={{lineHeight: 30}} name={item.icon} size={30} color="#1534A1" />
+                        {
+                          item.message !== null ?
+                          <View style={SideViewStyle.badge}>
+                            <Text style={{ color: '#FFF', fontWeight: 'bold' }}>{ item.message }</Text>
+                          </View> : <View></View>
+                        }
+                      </View>
+                      <View>
+                        <Text style={SideViewStyle.text}>{ item.text }</Text>
+                      </View>
+                    </View>
+                  )
+                })
+              }
+            </View>
+          )
+        })
+      }
+    </View>
+  )
+};
+
+const SideViewStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  row: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  item: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  icon: {
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    width: 80,
+    height: 80,
+    borderRadius: 80,
+    backgroundColor: '#FFF',
+    marginBottom: 15,
+
+    shadowColor: '#171717',
+    shadowOffset: {
+      width: -2, 
+      height: 4
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+  badge: {
+    position: 'absolute',
+    top: 0,
+    right: -5,
+    backgroundColor: 'red',
+    minWidth: 28,
+    minHeight: 28,
+    borderRadius: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#E5E5E5',
+  },
+
+  text: {
+    fontWeight: 'bold'
+  }
+});
+
+const data = [
+  [
+    {
+      icon: 'envelope',
+      text: 'お知らせ',
+      message: '1',
+      link: null
+    },
+    {
+      icon: 'file-text',
+      text: '社内報',
+      message: null,
+      link: null
+    },
+    {
+      icon: 'mortar-board',
+      text: 'E-ラーニング',
+      message: null,
+      link: null
+    }
+  ],
+  [
+    {
+      icon: 'calendar',
+      text: 'シフト表',
+      message: null,
+      link: null
+    }, 
+    {
+      icon: 'yen',
+      text: '給与明細',
+      message: null,
+      link: null
+    }, 
+    {
+      icon: 'wrench',
+      text: '整備',
+      message: null,
+      link: null
+    }
+  ],
+  [
+    {
+      icon: 'bar-chart',
+      text: 'P/L',
+      message: null,
+      link: null
+    },
+    {
+      icon: 'automobile',
+      text: '車両',
+      message: null,
+      link: null
+    }, 
+    {
+      icon: 'gears',
+      text: '設定',
+      message: null,
+      link: null
+    }
+  ]
+]
+
+const Home = () => {
+  return (
+    <View style={styleHome.container}>
+      <Navbar />
+      <View style={styleHome.zoneView}>
+        <View style={styleHome.zoneUser}>
+          <Text style={styleHome.displayUsername}>山田太郎</Text>
+          <Text style={styleHome.displayUserInfo}>東京team / ドライバー </Text>
+        </View>
+      </View>
+
+      <View style={styleHome.zoneSwiper}>
+        <Swiper
+          style={styleHome.wrapper}
+          dot={
+            <View
+              style={{
+                backgroundColor: 'rgba(255,255,255,.3)',
+                width: 13,
+                height: 13,
+                borderRadius: 7,
+                marginLeft: 7,
+                marginRight: 7,
+                borderWidth: 1,
+                borderColor: '#E5E5E5'
+              }}
+            />
+          }
+          activeDot={
+            <View
+              style={{
+                backgroundColor: '#1534A1',
+                width: 13,
+                height: 13,
+                borderRadius: 7,
+                marginLeft: 7,
+                marginRight: 7,
+                borderWidth: 1,
+                borderColor: '#E5E5E5'
+              }}
+            />
+          }
+          paginationStyle={{
+            bottom: -40
+          }}
+          loop={false}
+        >
+          <View style={styleHome.slide}>
+            <SideView data={data} />
+          </View>
+          <View style={styleHome.slide}>
+            <SideView data={data} />
+          </View>
+          <View style={styleHome.slide}>
+            <SideView data={data} />
+          </View>
+        </Swiper>
+      </View>
+      <View style={{ flex: 1 }}></View>
+    </View>
+  )
+}
+
+const styleHome = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  zoneView: {
+    flex: 1,
+    padding: 10
+  },
+
+  zoneUser: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  displayUsername: {
+    fontSize: 38,
+    fontWeight: '900',
+    color: '#00A968',
+  },
+  displayUserInfo: {
+    color: '#00A968',
+    fontWeight: '600'
+  },
+
+  zoneSwiper: {
+    flex: 6,
+  },
+  wrapper: {
+
+  },
+  slide: {
+    flex: 1,
+    backgroundColor: 'transparent',
+    marginHorizontal: 30,
+  },
+});
+
 const ListSidebar = (props) => {
   return (
     <DrawerContentScrollView {...props}>
@@ -194,9 +445,10 @@ const Sidebar = () => {
           flex: 1,
         },
       }} 
-      initialRouteName="Note"
+      initialRouteName="Home"
       drawerContent={(props) => <ListSidebar {...props} />}
     >
+      <Drawer.Screen name="Home" component={Home} options={{ drawerLabel: 'ダッシュボード', drawerItemStyle: styleWhite }} />
       <Drawer.Screen name="Note" component={NoteScreen} options={{ drawerLabel: 'お知らせ', drawerItemStyle: styleBlackSqueeze }} />
       <Drawer.Screen name="InternalNewsLetter" component={InternalNewsLetter} options={{ drawerLabel: '社内報', drawerItemStyle: styleWhite }} />
       <Drawer.Screen name="ElectronicLearning" component={ElectronicLearning} options={{ drawerLabel: 'Eラーニング', drawerItemStyle: styleBlackSqueeze }} />
