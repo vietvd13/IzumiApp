@@ -188,11 +188,11 @@ const Sidebar = () => {
           fontWeight: 'bold',
           flex: 1,
           textAlign: 'center',
-          marginRight: 0
+          paddingLeft: 32,
         },
         drawerContentStyle: {
-          flex: 1
-        } 
+          flex: 1,
+        },
       }} 
       initialRouteName="Note"
       drawerContent={(props) => <ListSidebar {...props} />}
