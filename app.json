@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "izumi-app",
+    "name": "Izumi App",
     "slug": "izumi-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/izumi.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/izumi.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,13 +17,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vietvd13.izumiapp"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/izumi.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.vietvd13.izumiapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

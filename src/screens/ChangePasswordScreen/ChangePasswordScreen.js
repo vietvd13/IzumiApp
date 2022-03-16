@@ -107,7 +107,7 @@ const ChangePasswordScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: '10px',
+    padding: 10,
   },
 
   zoneLogo: {

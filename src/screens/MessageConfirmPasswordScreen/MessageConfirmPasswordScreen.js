@@ -2,9 +2,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import React from 'react';
 
-const MessageConfirmPasswordScreen = () => {
+const MessageConfirmPasswordScreen = ({ navigation }) => {
   const onConfirm = () => {
-    console.log('onConfirm');
+    navigation.push('SignInScreen');
   }
 
   return (
@@ -28,7 +28,7 @@ const MessageConfirmPasswordScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: '10px'
+    padding: 10
   },
 
   zoneLogo: {
@@ -44,15 +44,17 @@ const styles = StyleSheet.create({
 
   zoneDes: {
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    marginBottom: '50px'
+    marginBottom: 50
   },
   textDes: {
     color: '#1534A1',
     fontSize: 19,
     fontWeight: 'bold',
-    marginVertical: '25px'
+    marginVertical: 25,
+    textAlign: 'center'
   }
 })
 

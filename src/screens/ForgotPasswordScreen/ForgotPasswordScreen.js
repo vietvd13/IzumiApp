@@ -10,7 +10,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
 
   const onForgotPassword = () => {
-    console.log('onForgotPassword');
+    navigation.push('ChangePasswordScreen')
   }
 
   return (

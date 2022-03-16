@@ -2,14 +2,14 @@ export const stylesCSS = {
   container: {
     flex: 1,
 
-    padding: '10px'
+    padding: 10
   },
 
   zoneLogo: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    height: '300px'
+    height: 300
   },
   textLogo: {
     fontSize: 64,
@@ -19,14 +19,15 @@ export const stylesCSS = {
 
   zoneDes: {
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'center',
-    marginBottom: '30px'
+    marginBottom: 30
   },
   textDes: {
     color: '#1534A1',
     fontSize: 19,
     fontWeight: 'bold',
-    marginVertical: '25px'
+    marginVertical: 25,
+    textAlign: 'center'
   }
 };

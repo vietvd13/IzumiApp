@@ -6,8 +6,6 @@ import { stylesCSS } from './style';
 
 const MessageSignUpScreen = ({ navigation }) => {
   const onConfirm = () => {
-    console.log('onConfirm');
-
     navigation.push('ChangePasswordScreen');
   }
 
