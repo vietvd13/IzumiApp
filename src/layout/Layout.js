@@ -241,7 +241,7 @@ const data = [
     {
       icon: 'mortar-board',
       text: 'E-ラーニング',
-      message: null,
+      message: '25',
       link: null
     }
   ],
@@ -249,7 +249,7 @@ const data = [
     {
       icon: 'calendar',
       text: 'シフト表',
-      message: null,
+      message: '5',
       link: null
     }, 
     {
@@ -275,7 +275,7 @@ const data = [
     {
       icon: 'automobile',
       text: '車両',
-      message: null,
+      message: '10',
       link: null
     }, 
     {
