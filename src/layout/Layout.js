@@ -150,7 +150,7 @@ const SideView = (props) => {
                   return (
                     <View style={SideViewStyle.item} key={`item-${indexRow}-${indexItem}`}>
                       <View style={SideViewStyle.icon}>
-                        <Icon style={{lineHeight: 30}} name={item.icon} size={30} color="#1534A1" />
+                        <Icon style={{lineHeight: 30}} name={item.icon} size={25} color="#1534A1" />
                         {
                           item.message !== null ?
                           <View style={SideViewStyle.badge}>
@@ -191,9 +191,9 @@ const SideViewStyle = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
-    width: 80,
-    height: 80,
-    borderRadius: 80,
+    width: 70,
+    height: 70,
+    borderRadius: 70,
     backgroundColor: '#FFF',
     marginBottom: 15,
 
@@ -210,13 +210,11 @@ const SideViewStyle = StyleSheet.create({
     top: 0,
     right: -5,
     backgroundColor: 'red',
-    minWidth: 28,
-    minHeight: 28,
-    borderRadius: 28,
+    minWidth: 25,
+    minHeight: 25,
+    borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: '#E5E5E5',
   },
 
   text: {
@@ -487,10 +485,9 @@ const NavbarStyle = StyleSheet.create({
     justifyContent: 'center',
   },
   displayLogo: {
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#1534A1',
-    textTransform: 'uppercase',
   }
 });
 

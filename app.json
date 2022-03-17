@@ -4,9 +4,9 @@
     "slug": "izumi-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/izumi.png",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/izumi.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/izumi.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.vietvd13.izumiapp"
