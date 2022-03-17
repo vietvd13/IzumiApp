@@ -34,6 +34,7 @@ const ListSidebar = (props) => {
             fontSize: 35,
             fontWeight: 'bold',
             color: '#1534A1',
+            textTransform: 'uppercase'
           }}>Izumi</Text>
         </View>
       </View>

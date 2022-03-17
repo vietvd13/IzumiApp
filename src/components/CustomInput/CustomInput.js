@@ -3,7 +3,7 @@ import React from 'react'
 
 const CustomInput = ({ 
   value, 
-  setValue, 
+  onChangeText, 
   placeholder, 
   secureTextEntry,
   height, 
@@ -11,7 +11,6 @@ const CustomInput = ({
   borderWidth, 
   borderRadius,
   autoFocus = false,
-  onEndEditing,
 }) => {
   return (
     <View style={[
@@ -40,12 +39,11 @@ const CustomInput = ({
     ]}>
       <TextInput 
         value={value}
-        onChange={setValue}
+        onChangeText={onChangeText}
         placeholder={placeholder}
         style={styles.input}
         secureTextEntry={secureTextEntry}
         autoFocus={autoFocus}
-        onEndEditing={onEndEditing}
       />
     </View>
   )
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   input: {
-
+    paddingHorizontal: 10
   }
 });
 

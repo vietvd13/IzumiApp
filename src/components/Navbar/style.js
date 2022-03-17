@@ -19,5 +19,6 @@ export const styleNavbar = {
     fontSize: 35,
     fontWeight: 'bold',
     color: '#1534A1',
+    textTransform: 'uppercase'
   }
 }

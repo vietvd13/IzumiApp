@@ -18,6 +18,7 @@ export const stylesCSS = {
     fontSize: 64,
     fontWeight: 'bold',
     color: '#1534A1',
+    textTransform: 'uppercase'
   },
 
   zoneInput: {

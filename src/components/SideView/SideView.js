@@ -14,7 +14,7 @@ const SideView = ({ navigation, data }) => {
                   return (
                     <View style={SideViewStyle.item} key={`item-${indexRow}-${indexItem}`}>
                       <Pressable style={SideViewStyle.icon} onPress={() => navigation.jumpTo(item.link)}>
-                        <Icon style={{lineHeight: 30}} name={item.icon} size={25} color="#1534A1" />
+                        <Icon style={{lineHeight: 30}} name={item.icon} size={31} color="#1534A1" />
                         {
                           item.message !== null ?
                           <View style={SideViewStyle.badge}>

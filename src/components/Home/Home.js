@@ -48,7 +48,7 @@ const Home = ({ navigation }) => {
             />
           }
           paginationStyle={{
-            bottom: -40
+            bottom: -20
           }}
           loop={false}
         >
@@ -81,7 +81,7 @@ const styleHome = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 50
   },
   displayUsername: {
     fontSize: 38,
@@ -95,6 +95,7 @@ const styleHome = StyleSheet.create({
 
   zoneSwiper: {
     flex: 6,
+    marginTop: 30
   },
   wrapper: {
 

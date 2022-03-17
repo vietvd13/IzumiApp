@@ -1,74 +1,8 @@
-import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import { View, Text, StyleSheet, Pressable, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useState, useRef } from 'react';
 import Navbar from '../Navbar';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomInput from '../CustomInput';
-
-const data = [
-  {
-    date: '2022/03/01',
-    message: '今日の集会は延期となります。'
-  },
-  {
-    date: '2022/03/02',
-    message: 'TL会議は3/3になります。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-  {
-    date: '2022/03/03',
-    message: '明日の業務は台風でお休みです。'
-  },
-];
-
-const borderRadius = {
-  borderTopRightRadius: 20,
-  borderBottomRightRadius: 20,
-  borderBottomLeftRadius: 20,
-  borderTopLeftRadius: 20
-}
 
 const Message = ({ data }) => {
   return (
@@ -102,10 +36,41 @@ const styleMessage = StyleSheet.create({
 })
 
 const Note = () => {
+  const data = [
+    {
+      date: '2022-03-01',
+      message: '今日の集会は延期となります。'
+    },
+    {
+      date: '2022-03-02',
+      message: 'TL会議は3/3になります。'
+    },
+    {
+      date: '2022-03-03',
+      message: '明日の業務は台風でお休みです。'
+    },
+  ];
+
+  const scrollMessage = useRef();
   const [tab, setTab] = useState('TEAM');
+  const [newMessage, setNewMessage] = useState('');
+  const [listMessage, setListMessage] = useState(data);
+
+  function onSendMessage() {
+    if (newMessage) {
+      const addMessage = {
+        message: newMessage,
+        date: new Date().toISOString().slice(0, 10),
+      }
+
+      setListMessage((listMessage) => [...listMessage, addMessage]);
+      
+      setNewMessage('');
+    }
+  }
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <Navbar />
       <View style={styles.wrapper}>
         <View style={styles.header}>
@@ -132,21 +97,30 @@ const Note = () => {
           </Pressable>
         </View>
 
-        <ScrollView style={styles.zoneChat}>
-          {
-            data.map((item, index) => {
-              return (
-                <Message data={item} key={`message-no-${index}`} />
-              )
-            })
-          }
-        </ScrollView>
-      </View>
+        <View style={{ flex: 1 }}>
+          <ScrollView style={styles.zoneChat} ref={scrollMessage} onContentSizeChange={() => scrollMessage.current.scrollToEnd({ animated: true })}>
+            {
+              listMessage && listMessage.map((item, index) => {
+                return (
+                  <Message data={item} key={`message-no-${index}`} />
+                )
+              })
+            }
+          </ScrollView>
 
-      <View style={styles.zoneTyping}>
-          <CustomInput borderRadius={borderRadius} />
+          <View style={styles.zoneTyping}>
+            <View style={styles.zoneInput}>
+              <View style={styles.inputMessage}>
+                <CustomInput value={newMessage} onChangeText={setNewMessage} height={41} autoFocus={true} />
+              </View>
+              <Pressable style={styles.iconSend} onPress={onSendMessage}>
+                <Icon style={{lineHeight: 41}} name="send" size={16} color="#1534A1" />
+              </Pressable>
+            </View>
+          </View>
+        </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 
@@ -227,14 +201,28 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   zoneChat: {
-    flex: 1,
     padding: 10,
+    flexGrow: 1,
   },
   zoneTyping: {
     height: 70,
-    marginBottom: 20,
+    marginBottom: 60,
     marginLeft: 10,
-    marginRight: 10
+    marginRight: 10,
+    justifyContent: 'flex-end',
+  },
+  zoneInput: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },  
+  inputMessage: {
+    flex: 1,
+  },
+  iconSend: {
+    height: 41,
+    width: 41,
+    paddingHorizontal: 10,
   }
 })
 
