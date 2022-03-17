@@ -12,7 +12,6 @@ const CustomInput = ({
   borderRadius,
   autoFocus = false,
   onEndEditing,
-  keyboardShouldPersistTaps
 }) => {
   return (
     <View style={[
