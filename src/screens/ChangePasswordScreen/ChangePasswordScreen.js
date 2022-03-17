@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -44,63 +44,66 @@ const ChangePasswordScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.zoneLogo}>
-        <Text style={styles.textLogo}>Izumi</Text>
-      </View>
-
-      <View style={styles.zoneInput}>
-        <View style={styles.inputPassword}>
-          <View style={styles.iconKey}>
-            <Icon style={{lineHeight: 39}} name="lock" size={16} color="#1534A1" />
-          </View>
-          <CustomInput 
-            placeholder="パスワード" 
-            value={password} 
-            setValue={setPassword} 
-            secureTextEntry={showPassword}
-            height={41}
-            borderColor={borderPassword.borderColor} 
-            borderWidth={borderPassword.borderWidth} 
-            borderRadius={borderPassword.borderRadius} 
-          />
-          <Pressable style={styles.iconEye} onPress={togglePassword}>
-            {
-              showPassword ?
-              <Icon style={{lineHeight: 39}} name="eye" size={16} color="#1534A1" /> :
-              <Icon style={{lineHeight: 39}} name="eye-slash" size={16} color="#1534A1" />
-            }
-          </Pressable>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <View style={styles.zoneLogo}>
+          <Text style={styles.textLogo}>Izumi</Text>
         </View>
 
-        <View style={styles.inputPassword}>
-          <View style={styles.iconKey}>
-            <Icon style={{lineHeight: 39}} name="lock" size={16} color="#1534A1" />
+        <View style={styles.zoneInput}>
+          <View style={styles.inputPassword}>
+            <View style={styles.iconKey}>
+              <Icon style={{lineHeight: 39}} name="lock" size={16} color="#1534A1" />
+            </View>
+            <CustomInput 
+              placeholder="パスワード" 
+              value={password} 
+              setValue={setPassword} 
+              secureTextEntry={showPassword}
+              height={41}
+              borderColor={borderPassword.borderColor} 
+              borderWidth={borderPassword.borderWidth} 
+              borderRadius={borderPassword.borderRadius}
+              autoFocus={true}  
+            />
+            <Pressable style={styles.iconEye} onPress={togglePassword}>
+              {
+                showPassword ?
+                <Icon style={{lineHeight: 39}} name="eye" size={16} color="#1534A1" /> :
+                <Icon style={{lineHeight: 39}} name="eye-slash" size={16} color="#1534A1" />
+              }
+            </Pressable>
           </View>
-          <CustomInput 
-            placeholder="パスワード再入力(確認用)" 
-            value={confirmPassword} 
-            setValue={setConfirmPassword} 
-            secureTextEntry={showConfirmPassword}
-            height={41}
-            borderColor={borderPassword.borderColor} 
-            borderWidth={borderPassword.borderWidth} 
-            borderRadius={borderPassword.borderRadius} 
-          />
-          <Pressable style={styles.iconEye} onPress={toggleConfirmPassword}>
-            {
-              showPassword ?
-              <Icon style={{lineHeight: 39}} name="eye" size={16} color="#1534A1" /> :
-              <Icon style={{lineHeight: 39}} name="eye-slash" size={16} color="#1534A1" />
-            }
-          </Pressable>
+
+          <View style={styles.inputPassword}>
+            <View style={styles.iconKey}>
+              <Icon style={{lineHeight: 39}} name="lock" size={16} color="#1534A1" />
+            </View>
+            <CustomInput 
+              placeholder="パスワード再入力(確認用)" 
+              value={confirmPassword} 
+              setValue={setConfirmPassword} 
+              secureTextEntry={showConfirmPassword}
+              height={41}
+              borderColor={borderPassword.borderColor} 
+              borderWidth={borderPassword.borderWidth} 
+              borderRadius={borderPassword.borderRadius} 
+            />
+            <Pressable style={styles.iconEye} onPress={toggleConfirmPassword}>
+              {
+                showPassword ?
+                <Icon style={{lineHeight: 39}} name="eye" size={16} color="#1534A1" /> :
+                <Icon style={{lineHeight: 39}} name="eye-slash" size={16} color="#1534A1" />
+              }
+            </Pressable>
+          </View>
+
+          <CustomButton text="パスワードを設定" onPress={onChangePassword} />
         </View>
 
-        <CustomButton text="パスワードを設定" onPress={onChangePassword} />
+        <View style={{ flex: 1, justifyContent: 'flex-end' }} />
       </View>
-
-      <View style={{ flex: 1, justifyContent: 'flex-end' }} />
-    </View>
+    </TouchableWithoutFeedback>
   )
 }
 
@@ -123,13 +126,15 @@ const styles = StyleSheet.create({
 
   zoneInput: {
     flex: 1,
+    justifyContent: 'center'
   },
   inputPassword: {
-    flex: 1,
+    height: 41,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 40,
+    marginBottom: 30,
   },
   iconKey: {
     lineHeight: 41,

@@ -138,18 +138,18 @@ const Setting = () => {
   )
 }
 
-const SideView = (props) => {
+const SideView = ({ navigation, data}) => {
   return (
     <View style={SideViewStyle.container}>
       {
-        props.data.map((row, indexRow) => {
+        data.map((row, indexRow) => {
           return (
             <View style={SideViewStyle.row} key={`row-${indexRow}`}>
               {
                 row.map((item, indexItem) => {
                   return (
                     <View style={SideViewStyle.item} key={`item-${indexRow}-${indexItem}`}>
-                      <View style={SideViewStyle.icon}>
+                      <Pressable style={SideViewStyle.icon} onPress={() => navigation.jumpTo(item.link)}>
                         <Icon style={{lineHeight: 30}} name={item.icon} size={25} color="#1534A1" />
                         {
                           item.message !== null ?
@@ -157,7 +157,7 @@ const SideView = (props) => {
                             <Text style={{ color: '#FFF', fontWeight: 'bold' }}>{ item.message }</Text>
                           </View> : <View></View>
                         }
-                      </View>
+                      </Pressable>
                       <View>
                         <Text style={SideViewStyle.text}>{ item.text }</Text>
                       </View>
@@ -228,19 +228,19 @@ const data = [
       icon: 'envelope',
       text: 'お知らせ',
       message: '1',
-      link: null
+      link: 'Note'
     },
     {
       icon: 'file-text',
       text: '社内報',
       message: null,
-      link: null
+      link: 'InternalNewsLetter'
     },
     {
       icon: 'mortar-board',
       text: 'E-ラーニング',
       message: '25',
-      link: null
+      link: 'ElectronicLearning'
     }
   ],
   [
@@ -248,19 +248,19 @@ const data = [
       icon: 'calendar',
       text: 'シフト表',
       message: '5',
-      link: null
+      link: 'TransferTable'
     }, 
     {
       icon: 'yen',
       text: '給与明細',
       message: null,
-      link: null
+      link: 'PayCheck'
     }, 
     {
       icon: 'wrench',
       text: '整備',
       message: null,
-      link: null
+      link: 'Maintenance'
     }
   ],
   [
@@ -268,24 +268,24 @@ const data = [
       icon: 'bar-chart',
       text: 'P/L',
       message: null,
-      link: null
+      link: 'PL'
     },
     {
       icon: 'automobile',
       text: '車両',
       message: '10',
-      link: null
+      link: 'Transport'
     }, 
     {
       icon: 'gears',
       text: '設定',
       message: null,
-      link: null
+      link: 'Setting'
     }
   ]
 ]
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
     <View style={styleHome.container}>
       <Navbar />
@@ -333,13 +333,13 @@ const Home = () => {
           loop={false}
         >
           <View style={styleHome.slide}>
-            <SideView data={data} />
+            <SideView data={data} navigation={navigation} />
           </View>
           <View style={styleHome.slide}>
-            <SideView data={data} />
+            <SideView data={data} navigation={navigation} />
           </View>
           <View style={styleHome.slide}>
-            <SideView data={data} />
+            <SideView data={data} navigation={navigation} />
           </View>
         </Swiper>
       </View>
@@ -399,10 +399,9 @@ const ListSidebar = (props) => {
           marginRight: 10,
         }}>
           <Text style={{
-            fontSize: 25,
+            fontSize: 35,
             fontWeight: 'bold',
             color: '#1534A1',
-            textTransform: 'uppercase',
           }}>Izumi</Text>
         </View>
       </View>
@@ -485,7 +484,7 @@ const NavbarStyle = StyleSheet.create({
     justifyContent: 'center',
   },
   displayLogo: {
-    fontSize: 30,
+    fontSize: 35,
     fontWeight: 'bold',
     color: '#1534A1',
   }

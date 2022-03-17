@@ -9,7 +9,10 @@ const CustomInput = ({
   height, 
   borderColor, 
   borderWidth, 
-  borderRadius
+  borderRadius,
+  autoFocus = false,
+  onEndEditing,
+  keyboardShouldPersistTaps
 }) => {
   return (
     <View style={[
@@ -42,6 +45,8 @@ const CustomInput = ({
         placeholder={placeholder}
         style={styles.input}
         secureTextEntry={secureTextEntry}
+        autoFocus={autoFocus}
+        onEndEditing={onEndEditing}
       />
     </View>
   )

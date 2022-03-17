@@ -22,13 +22,15 @@ export const stylesCSS = {
 
   zoneInput: {
     flex: 1,
+    justifyContent: 'center'
   },
   inputUserId: {
-    flex: 1,
+    height: 41,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 20,
+    marginBottom: 30
   },
   iconUser: {
     height: 41,
