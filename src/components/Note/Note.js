@@ -33,6 +33,43 @@ const styleMessage = StyleSheet.create({
 
     padding: 15,
   }
+});
+
+const Notification = ({ data, index }) => {
+  const bgWhite = {
+    backgroundColor: '#FFF'
+  };
+
+  const bgBlue = {
+    backgroundColor: '#F1F5FA'
+  }
+
+  return (
+    <View style={[styleNotification.container, index % 2 !== 0 ? bgWhite : bgBlue]}>
+      <View style={styleNotification.notification}>
+        <Text>{ data.message }</Text>
+      </View>
+      <View style={styleNotification.date}>
+        <Text>{ data.date }</Text>
+      </View>
+    </View>
+  )
+}
+
+const styleNotification = StyleSheet.create({
+  container: {
+    padding: 15
+  },
+  notification: {
+    marginBottom: 10,
+  },
+  date: {
+    flex: 1,
+    color: '#000',
+    opacity: 0.5,
+    fontSize: 11,
+    alignSelf: 'flex-end'
+  }
 })
 
 const Note = () => {
@@ -52,6 +89,7 @@ const Note = () => {
   ];
 
   const scrollMessage = useRef();
+  const scrollNotification = useRef();
   const [tab, setTab] = useState('TEAM');
   const [newMessage, setNewMessage] = useState('');
   const [listMessage, setListMessage] = useState(data);
@@ -83,13 +121,19 @@ const Note = () => {
         </View>
 
         <View style={styles.zoneTab}>
-          <Pressable style={[styles.tabStyle, tab === 'TEAM' ? styles.tabActive : {}]} onPress={() => setTab('TEAM')}>
+          <Pressable style={[styles.tabStyle, tab === 'TEAM' ? styles.tabActive : {}]} onPress={() => {
+            setTab('TEAM');
+            setNewMessage('');
+          }}>
             <Text style={[styles.tabText, tab === 'TEAM' ? styles.tabTextActive : {} ]}>Team</Text>
             <View style={styles.messageText}>
               <Text style={styles.textNotify}>1</Text>
             </View>
           </Pressable>
-          <Pressable style={[styles.tabStyle, tab === 'IZUMI' ? styles.tabActive : {}]} onPress={() => setTab('IZUMI')}>
+          <Pressable style={[styles.tabStyle, tab === 'IZUMI' ? styles.tabActive : {}]} onPress={() => {
+            setTab('IZUMI');
+            setNewMessage('');
+          }}>
             <Text style={[styles.tabText, tab === 'IZUMI' ? styles.tabTextActive : {}]}>Izumi</Text>
             <View style={styles.messageText}>
               <Text style={styles.textNotify}>3</Text>
@@ -98,26 +142,46 @@ const Note = () => {
         </View>
 
         <View style={{ flex: 1 }}>
-          <ScrollView style={styles.zoneChat} ref={scrollMessage} onContentSizeChange={() => scrollMessage.current.scrollToEnd({ animated: true })}>
-            {
-              listMessage && listMessage.map((item, index) => {
-                return (
-                  <Message data={item} key={`message-no-${index}`} />
-                )
-              })
-            }
-          </ScrollView>
+          {
+            tab === 'TEAM' ? 
+            <View style={{ flex: 1 }}>
+              <ScrollView style={styles.zoneChat} ref={scrollMessage} onContentSizeChange={() => scrollMessage.current.scrollToEnd({ animated: true })}>
+                {
+                  listMessage && listMessage.map((item, index) => {
+                    return (
+                      <Message data={item} key={`message-no-${index + 1}`} />
+                    )
+                  })
+                }
+              </ScrollView>
 
-          <View style={styles.zoneTyping}>
-            <View style={styles.zoneInput}>
-              <View style={styles.inputMessage}>
-                <CustomInput value={newMessage} onChangeText={setNewMessage} height={41} autoFocus={true} />
+              <View style={styles.zoneTyping}>
+                <View style={styles.zoneInput}>
+                  <View style={styles.inputMessage}>
+                    <CustomInput value={newMessage} onChangeText={setNewMessage} height={41} autoFocus={true} />
+                  </View>
+                  <Pressable style={styles.iconSend} onPress={onSendMessage}>
+                    <Icon style={{lineHeight: 41}} name="send" size={16} color="#1534A1" />
+                  </Pressable>
+                </View>
               </View>
-              <Pressable style={styles.iconSend} onPress={onSendMessage}>
-                <Icon style={{lineHeight: 41}} name="send" size={16} color="#1534A1" />
-              </Pressable>
-            </View>
-          </View>
+            </View> : <View></View>
+          }
+
+          {
+            tab === 'IZUMI' ?
+            <View style={{ flex: 1 }}>
+              <ScrollView ref={scrollNotification} onContentSizeChange={() => scrollNotification.current.scrollToEnd({ animated: true })}>
+                {
+                  listMessage && listMessage.map((item, index) => {
+                    return (
+                      <Notification data={item} index={index + 1} key={`notification-no-${index + 1}`} />
+                    )
+                  })
+                }
+              </ScrollView>
+            </View> : <View></View>
+          }
         </View>
       </View>
     </KeyboardAvoidingView>
@@ -205,11 +269,9 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   zoneTyping: {
-    height: 70,
-    marginBottom: 60,
     marginLeft: 10,
     marginRight: 10,
-    justifyContent: 'flex-end',
+    marginBottom: 45,
   },
   zoneInput: {
     flexDirection: 'row',

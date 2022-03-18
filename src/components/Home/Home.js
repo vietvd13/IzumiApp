@@ -81,7 +81,7 @@ const styleHome = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 50
+    marginTop: 20
   },
   displayUsername: {
     fontSize: 38,
